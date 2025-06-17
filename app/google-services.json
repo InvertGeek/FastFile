@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "840035198939",
+    "project_id": "fasstf-ef2e1",
+    "storage_bucket": "fasstf-ef2e1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840035198939:android:c179f55de77cd84b14a9fe",
+        "android_client_info": {
+          "package_name": "com.dex.fastfile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvRjihdALIqmY_X4KBasoC9RI2q0MVBAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840035198939:android:079e5348f276d86e14a9fe",
+        "android_client_info": {
+          "package_name": "com.donut.fastfile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvRjihdALIqmY_X4KBasoC9RI2q0MVBAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
