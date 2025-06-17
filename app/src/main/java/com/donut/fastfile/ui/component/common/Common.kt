@@ -1,5 +1,6 @@
 package com.donut.fastfile.ui.component.common
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.outlined.Done
@@ -22,13 +24,14 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.donut.fastfile.util.truncate
 
 @Composable
 fun CommonColumn(
@@ -163,25 +166,39 @@ fun SingleSelectItemList(
     )
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun <T> SingleSelectItemList(
     items: List<T>,
-    currentOption: T?,
+    currentOption: T? = null,
     getLabel: (option: T) -> String,
     onSelect: (option: T) -> Unit,
 ) {
+    val listState = rememberLazyListState()
+    LaunchedEffect(items) {
+        listState.animateScrollToItem(items.indexOf(currentOption).coerceAtLeast(0))
+    }
     LazyColumn(
+        state = listState,
         modifier = Modifier
             .heightIn(0.dp, 400.dp),
     ) {
+
         items(items.size) { item ->
             val currentItem = items[item]
             val selected = currentOption == currentItem
             FilterChip(
-                label = { Text(text = getLabel(currentItem).truncate(13)) },
+                label = {
+                    Text(
+                        text = getLabel(currentItem),
+                        overflow = TextOverflow.Ellipsis,
+                        maxLines = 1
+                    )
+                },
                 onClick = {
                     onSelect(currentItem)
                 },
+
                 selected = selected,
                 leadingIcon = if (selected) {
                     {
