@@ -97,7 +97,6 @@ fun uploadUri(uri: Uri) {
                 progressContent.LoadingContent()
             }
             AsyncEffect {
-
                 val fileSize = uri.getFileSize()
                 val fileName = uri.getFileName()
                 errorDialog("上传失败") {

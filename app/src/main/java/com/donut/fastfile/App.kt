@@ -11,6 +11,8 @@ import com.tencent.mmkv.MMKV
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
+import mobile.Mobile
 
 
 val appScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
@@ -42,6 +44,9 @@ class App : Application() {
         innerApp = this
         MMKV.initialize(this)
         kv = MMKV.defaultMMKV()
+        appScope.launch(Dispatchers.IO) {
+            Mobile.startServer()
+        }
         appScope.loopTask(1000 * 60 * 10) {
             kv.clearMemoryCache()
             kv.trim()
