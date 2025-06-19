@@ -1,7 +1,8 @@
 # FastFile
 基于DirectLink开发: https://github.com/InvertGeek/directlink \
 运行无风险,权限受到安卓虚拟机严格限制,AndroidManifest只配置获取了网络权限 \
-选择文件上传时调用系统文件管理器，只能获取到您选择的文件
+选择文件上传时调用系统文件管理器，只能获取到您选择的文件 \
+同时可用浏览器打开局域网地址，用网页进行上传，支持批量上传(需要关闭省电限制),否则APP进入后台会被冻结运行
 
 ## 下载
 https://github.com/InvertGeek/FastFile/releases \
