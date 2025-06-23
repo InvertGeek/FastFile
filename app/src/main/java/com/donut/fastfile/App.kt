@@ -3,6 +3,7 @@ package com.donut.fastfile
 
 import android.app.Application
 import android.os.Looper
+import com.donut.directlink.Directlink
 import com.donut.fastfile.util.loopTask
 import com.donut.fastfile.util.objects.MixActivity
 import com.donut.fastfile.util.showError
@@ -12,7 +13,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import mobile.Mobile
 
 
 val appScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
@@ -45,7 +45,7 @@ class App : Application() {
         MMKV.initialize(this)
         kv = MMKV.defaultMMKV()
         appScope.launch(Dispatchers.IO) {
-            Mobile.startServer()
+            Directlink.startServer()
         }
         appScope.loopTask(1000 * 60 * 10) {
             kv.clearMemoryCache()

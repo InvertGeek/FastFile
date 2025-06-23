@@ -8,9 +8,12 @@ import android.net.NetworkInfo
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import com.donut.directlink.Directlink
+
+
 import com.donut.fastfile.serverAddress
 import com.donut.fastfile.util.getIpAddressInLocalNetwork
-import mobile.Mobile
+
 
 object NetworkChangeReceiver : BroadcastReceiver() {
 
@@ -29,6 +32,6 @@ object NetworkChangeReceiver : BroadcastReceiver() {
             isWifi = isWifiConnected(context)
         }
 
-        serverAddress = "http://${getIpAddressInLocalNetwork()}:${Mobile.getPort()}"
+        serverAddress = "http://${getIpAddressInLocalNetwork()}:${Directlink.getPort()}"
     }
 }
