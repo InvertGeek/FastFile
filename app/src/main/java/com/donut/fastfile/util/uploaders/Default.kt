@@ -15,6 +15,7 @@ import io.ktor.client.request.put
 import io.ktor.client.request.setBody
 import io.ktor.client.request.url
 import io.ktor.client.statement.bodyAsText
+import io.ktor.http.isSuccess
 
 
 object DefaultUploader : Uploader() {
@@ -34,6 +35,9 @@ object DefaultUploader : Uploader() {
             header("content-length", file.getFileSize())
             setBody(fileStream)
             onUpload(progress.ktorListener)
+        }
+        if (!response.status.isSuccess()){
+            throw Exception("上传失败!")
         }
         return response.bodyAsText()
     }
