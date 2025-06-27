@@ -61,8 +61,10 @@ inline fun <reified T, reified C : Iterable<T>> cachedMutableOf(value: C, key: S
         getter@{
             var result = value
             catchError {
-                val json: C = kv.decodeString(key).into()
-                result = json
+                if (kv.containsKey(key)) {
+                    val json: C = kv.decodeString(key).into()
+                    result = json
+                }
             }
             return@getter result
         }
