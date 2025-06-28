@@ -36,10 +36,11 @@ object DefaultUploader : Uploader() {
             setBody(fileStream)
             onUpload(progress.ktorListener)
         }
+        val text = response.bodyAsText()
         if (!response.status.isSuccess()){
-            throw Exception("上传失败!")
+            throw Exception("上传失败: ${text}")
         }
-        return response.bodyAsText()
+        return text
     }
 
 }
