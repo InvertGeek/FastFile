@@ -22,9 +22,9 @@ lateinit var kv: MMKV
 private lateinit var innerApp: Application
 
 
-val currentActivity: MixActivity
+val currentActivity: MixActivity?
     get() {
-        return MixActivity.firstActiveActivity()!!
+        return MixActivity.firstActiveActivity()
     }
 
 val app: Application

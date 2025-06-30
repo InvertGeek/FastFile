@@ -181,5 +181,5 @@ fun openGithubLink() {
             Intent.ACTION_VIEW,
             "https://github.com/InvertGeek/FastFile".toUri()
         )
-    currentActivity.startActivity(intent)
+    currentActivity?.startActivity(intent)
 }
