@@ -78,9 +78,9 @@ class StreamContent(private val stream: InputStream, val length: Long = 0) :
 }
 
 
-fun formatFileSize(bytes: Long, mb: Boolean = false): String {
+fun formatFileSize(bytes: Long, forceMB: Boolean = false): String {
     if (bytes <= 0) return "0 B"
-    if (mb && bytes > 1024 * 1024) {
+    if (forceMB && bytes > 1024 * 1024) {
         return String.format(
             Locale.US,
             "%.2f MB",
@@ -88,13 +88,13 @@ fun formatFileSize(bytes: Long, mb: Boolean = false): String {
         )
     }
     val units = arrayOf("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
-    val digitGroups = (log10(bytes.toDouble()) / log10(1024.0)).toInt()
+    val digitGroups = (log10(bytes.toDouble()) / log10(1024.0)).toInt().coerceAtMost(units.size - 1)
 
     return String.format(
         Locale.US,
         "%.2f %s",
         bytes / 1024.0.pow(digitGroups.toDouble()),
-        units.getOrNull(digitGroups)
+        units[digitGroups]
     )
 }
 
