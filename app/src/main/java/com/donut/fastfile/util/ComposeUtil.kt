@@ -44,7 +44,6 @@ import com.donut.fastfile.currentActivity
 import com.donut.fastfile.ui.component.common.MixDialogBuilder
 import com.donut.fastfile.ui.theme.MainTheme
 import com.donut.fastfile.ui.theme.colorScheme
-import com.donut.fastfile.util.objects.MixActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

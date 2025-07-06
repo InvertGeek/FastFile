@@ -8,12 +8,9 @@ import com.alibaba.fastjson2.toJSONString
 import com.donut.fastfile.appScope
 import com.donut.fastfile.kv
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import kotlinx.coroutines.withContext
 
 
 fun <T> constructCachedMutableValue(
@@ -77,7 +74,7 @@ abstract class CachedMutableValue<T>(
 ) {
     private var loaded = false
     private val mutex = Mutex()
-    private var saveTask: Job? = null
+
     private var stateValue by mutableLongStateOf(0)
 
     abstract fun readCachedValue(): T
@@ -103,13 +100,9 @@ abstract class CachedMutableValue<T>(
             }
             stateValue++
             this.value = value
-            saveTask?.cancel()
-            saveTask = appScope.launch(Dispatchers.Main) {
+            appScope.launch(Dispatchers.IO) {
                 mutex.withLock {
-                    delay(100)
-                    withContext(Dispatchers.IO) {
-                        writeCachedValue(this@CachedMutableValue.value)
-                    }
+                    writeCachedValue(this@CachedMutableValue.value)
                 }
             }
         }
