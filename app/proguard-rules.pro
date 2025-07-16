@@ -64,6 +64,22 @@
 -dontwarn io.netty.internal.tcnative.SniHostNameMatcher
 -dontwarn io.netty.pkitesting.**
 
+# 保留实现了 android.os.Parcelable 的类
+-keep class * implements android.os.Parcelable {
+    public static final android.os.Parcelable$Creator *;
+}
+
+# 保留所有 Creator 字段（有时必须精确匹配字段名）
+-keepnames class * implements android.os.Parcelable
+-keepclassmembers class * implements android.os.Parcelable {
+    static <fields>;
+}
+
+# 避免混淆字段名（可选，但推荐）
+-keepclassmembers class * implements android.os.Parcelable {
+    <fields>;
+}
+
 -dontwarn org.apache.log4j.Level
 -dontwarn org.apache.log4j.Logger
 -dontwarn org.apache.log4j.Priority
