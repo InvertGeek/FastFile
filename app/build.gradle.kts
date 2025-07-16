@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     id("com.google.gms.google-services")
     id("kotlin-parcelize")
+    kotlin("plugin.serialization") version "2.2.0"
 }
 
 android {
@@ -64,16 +65,13 @@ android {
 
 dependencies {
     implementation(files("libs/server.aar"))
-    implementation(libs.fastjson2.kotlin)
-    implementation(libs.kotlin.stdlib)
-    implementation(libs.kotlin.reflect)
+    implementation(libs.kotlinx.serialization.json)
     implementation(libs.mmkv)
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.okhttp)
     implementation(libs.firebase.analytics)
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.network)
-    implementation(libs.ktor.serialization.gson)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

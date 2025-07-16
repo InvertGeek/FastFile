@@ -4,8 +4,9 @@ import androidx.compose.material3.Text
 import com.donut.fastfile.ui.component.common.MixDialogBuilder
 import com.donut.fastfile.util.cachedMutableOf
 import com.donut.fastfile.util.showToast
+import kotlinx.serialization.Serializable
 
-
+@Serializable
 data class FileDataLog(
     val url: String,
     val name: String,
