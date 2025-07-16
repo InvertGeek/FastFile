@@ -26,7 +26,7 @@
 -dontwarn java.beans.Introspector
 -dontwarn java.beans.PropertyDescriptor
 -keep class xyz.doikki.videoplayer.** { *; }
--keep class com.donut.** { *; }
+#-keep class com.donut.** { *; }
 -keep class com.tencent.mmkv.** {*;}
 -keep class io.netty.** {*;}
 -keep class com.alibaba.** {*;}
@@ -45,6 +45,10 @@
 # ExoPlayer
 -keep class com.google.android.exoplayer2.** { *; }
 -dontwarn com.google.android.exoplayer2.**
+
+
+# mixfile
+-keep class io.netty.** {*;}
 -dontwarn io.netty.internal.tcnative.AsyncSSLPrivateKeyMethod
 -dontwarn io.netty.internal.tcnative.AsyncTask
 -dontwarn io.netty.internal.tcnative.Buffer
@@ -58,6 +62,8 @@
 -dontwarn io.netty.internal.tcnative.SSLSessionCache
 -dontwarn io.netty.internal.tcnative.SessionTicketKey
 -dontwarn io.netty.internal.tcnative.SniHostNameMatcher
+-dontwarn io.netty.pkitesting.**
+
 -dontwarn org.apache.log4j.Level
 -dontwarn org.apache.log4j.Logger
 -dontwarn org.apache.log4j.Priority
