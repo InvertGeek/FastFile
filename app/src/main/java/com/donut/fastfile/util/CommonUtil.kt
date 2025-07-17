@@ -29,6 +29,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
+import java.io.EOFException
 import java.io.InputStream
 import java.net.NetworkInterface
 import java.net.URL
@@ -341,17 +342,21 @@ fun getIpAddressInLocalNetwork(): String {
     return localAddresses.firstOrNull() ?: "127.0.0.1"
 }
 
-inline fun errorDialog(title: String, block: () -> Unit) {
+inline fun <T> errorDialog(title: String, onError: (Exception) -> Unit = {}, block: () -> T): T? {
     try {
-        block()
+        return block()
     } catch (e: Exception) {
-        if (e is CancellationException) {
-            return
+        onError(e)
+        when (e) {
+            is CancellationException,
+            is EOFException,
+                -> return null
         }
         appScope.launch(Dispatchers.Main) {
             showErrorDialog(e, title)
         }
     }
+    return null
 }
 
 
