@@ -1,23 +1,25 @@
 package com.donut.fastfile.util
 
+import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.provider.OpenableColumns
 import android.util.Log
+import androidx.core.net.toUri
 import com.donut.fastfile.app
 import com.donut.fastfile.appScope
-
+import com.donut.fastfile.currentActivity
 import io.ktor.client.request.forms.FormBuilder
 import io.ktor.http.ContentType
 import io.ktor.http.Headers
 import io.ktor.http.content.OutgoingContent
 import io.ktor.http.defaultForFilePath
 import io.ktor.http.quote
-
 import io.ktor.utils.io.ByteWriteChannel
 import io.ktor.utils.io.InternalAPI
 import io.ktor.utils.io.jvm.javaio.toOutputStream
@@ -311,11 +313,19 @@ fun decompressGzip(compressed: ByteArray): String {
     }
 }
 
+fun startActivity(intent: Intent) {
+    val context = currentActivity ?: app
+    if (context !is Activity) {
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    }
+    context.startActivity(intent)
+}
+
 
 fun isValidUri(uriString: String): Boolean {
     try {
-        val uri = Uri.parse(uriString)
-        return uri != null && uri.scheme != null
+        val uri = uriString.toUri()
+        return uri.scheme != null
     } catch (e: Exception) {
         return false
     }

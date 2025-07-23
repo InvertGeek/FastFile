@@ -35,7 +35,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
-import com.donut.fastfile.currentActivity
 import com.donut.fastfile.serverAddress
 import com.donut.fastfile.ui.theme.colorScheme
 import com.donut.fastfile.util.copyToClipboard
@@ -47,6 +46,7 @@ import com.donut.fastfile.util.file.showFileResult
 import com.donut.fastfile.util.file.uploadLogs
 import com.donut.fastfile.util.formatFileSize
 import com.donut.fastfile.util.formatTime
+import com.donut.fastfile.util.startActivity
 import java.util.Date
 
 
@@ -181,5 +181,5 @@ fun openGithubLink() {
             Intent.ACTION_VIEW,
             "https://github.com/InvertGeek/FastFile".toUri()
         )
-    currentActivity?.startActivity(intent)
+    startActivity(intent)
 }
