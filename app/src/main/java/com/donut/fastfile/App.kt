@@ -43,7 +43,7 @@ class App : Application() {
         }
         innerApp = this
         MMKV.initialize(this)
-        kv = MMKV.defaultMMKV()
+        kv = MMKV.defaultMMKV(MMKV.MULTI_PROCESS_MODE, null)
         kv.enableCompareBeforeSet()
         appScope.launch(Dispatchers.IO) {
             Directlink.startServer()
