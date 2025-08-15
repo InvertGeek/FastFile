@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -22,7 +23,6 @@ import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
 import com.donut.fastfile.MainActivity
 import com.donut.fastfile.ui.component.common.MixDialogBuilder
-import com.donut.fastfile.ui.theme.colorScheme
 import com.donut.fastfile.util.AsyncEffect
 import com.donut.fastfile.util.copyToClipboard
 import com.donut.fastfile.util.errorDialog

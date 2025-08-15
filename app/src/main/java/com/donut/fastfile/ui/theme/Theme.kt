@@ -31,7 +31,7 @@ val LightColorScheme = lightColorScheme(
     onSurface = Color(0xFF1C1B1F),
 )
 
-var colorScheme by mutableStateOf(LightColorScheme)
+var mainColorScheme by mutableStateOf(LightColorScheme)
 
 @Composable
 fun MainTheme(
@@ -40,11 +40,11 @@ fun MainTheme(
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit,
 ) {
-    colorScheme =
+    mainColorScheme =
         if (darkTheme) DarkColorScheme else LightColorScheme
 
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = mainColorScheme,
         typography = Typography,
         content = content
     )

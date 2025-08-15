@@ -24,6 +24,7 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,7 +37,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
 import com.donut.fastfile.serverAddress
-import com.donut.fastfile.ui.theme.colorScheme
 import com.donut.fastfile.util.copyToClipboard
 import com.donut.fastfile.util.file.FileDataLog
 import com.donut.fastfile.util.file.InfoText
