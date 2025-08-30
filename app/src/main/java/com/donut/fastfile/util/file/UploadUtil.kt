@@ -4,13 +4,9 @@ import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.HttpTimeout
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.http.userAgent
 
 val uploadClient = HttpClient(OkHttp).config {
-    install(ContentNegotiation) {
-
-    }
     install(HttpTimeout) {
         requestTimeoutMillis = 1000 * 36000
     }
